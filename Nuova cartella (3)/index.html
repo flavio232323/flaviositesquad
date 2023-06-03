@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista Squadre</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script>
+        function cambiaPagina() {
+      window.location.href = 'roma.html'; // Sostituisci "nuova_pagina.html" con l'URL o il percorso della pagina a cui desideri navigare
+    }
+    function mostraMessaggio(squadra) {
+      if (squadra === 'roma') {
+        alert('Bravo! Forza Roma!');
+      } else {
+        alert('No. Forza Roma!');
+      }
+    }
+    window.onload = function() {
+      incrementaConteggio();
+      mostraConteggio();
+    };
+
+    function mostraConteggio() {
+      var conteggio = localStorage.getItem('visitatori');
+      if (conteggio) {
+        document.getElementById('conteggio').textContent = 'NUMERO DI PERSONE CHE HA VISITATO IL SITO: ' + conteggio;
+      } else {
+        document.getElementById('conteggio').textContent = 'Ancora nessuna visita al sito.';
+      }
+    }
+    
+    function incrementaConteggio() {
+      if (localStorage.getItem('visitatori')) {
+        var conteggio = parseInt(localStorage.getItem('visitatori'));
+        conteggio += 1;
+        localStorage.setItem('visitatori', conteggio);
+      } else {
+        localStorage.setItem('visitatori', 1);
+      }
+    }
+  </script>
+</head>
+<body>
+  
+    <div class="cont" id="conteggio"> </div>
+  <h1 class="lista">Lista Squadre</h1>
+  <div class="bottoni">
+    <button onclick="cambiaPagina()" class="roma">Roma</button>
+    <button onclick="mostraMessaggio('lazio')" class="lazio">Lazio</button>
+    <button onclick="mostraMessaggio('juventus')" class="juventus">Juventus</button>
+    <button onclick="mostraMessaggio('napoli')" class="napoli">Napoli</button>
+    <button onclick="mostraMessaggio('milan')" class="milan">Milan</button>
+  </div>
+</body>
